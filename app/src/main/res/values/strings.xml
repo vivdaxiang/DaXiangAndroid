@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">淘金</string>
+    <string name="popup_menu_search">搜索</string>
+    <string name="popup_menu_share">分享</string>
+    <string name="popup_menu_edit">编辑</string>
+    <string name="popup_menu_delete">删除</string>
+
+    <string name="picture_title">相册</string>
+</resources>
