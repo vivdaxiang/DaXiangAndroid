@@ -17,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,6 +43,10 @@ public class PicturesActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView)
     public RecyclerView mRecyclerView;
     private MyAdapter mAdapter;
+    private int mScreenWidth;
+    private ArrayList<Integer> mHeights;
+    private ArrayList<Integer> mWidths;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +54,12 @@ public class PicturesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pictures);
         ButterKnife.bind(this);
         mContentResolver = getContentResolver();
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        mScreenWidth = metrics.widthPixels;
+        mHeights = new ArrayList<>();
+        mWidths = new ArrayList<>();
         requestReadExternalPermission();
     }
 
@@ -231,6 +242,19 @@ public class PicturesActivity extends AppCompatActivity {
         public void onBindViewHolder(MyViewHolder holder, int position) {
 //            MediaStore.Images.Thumbnails.getThumbnail(mContext.getContentResolver(),mDatas.get(position),
 //                    MediaStore.Images.Thumbnails.MICRO_KIND,options);
+            // 随机高度, 模拟瀑布效果.
+            if (mHeights.size() <= position) {
+                mHeights.add((int) (200 + Math.random() * 300));
+            }
+            if (mWidths.size() <= position) {
+                mWidths.add((int) (400 + Math.random() * 300));
+            }
+
+            ViewGroup.LayoutParams lp = holder.imageView.getLayoutParams();
+            lp.height = mHeights.get(position);
+            lp.width = mWidths.get(position);
+            holder.imageView.setLayoutParams(lp);
+
             Glide.with(mContext).load(mDatas.get(position)).into(holder.imageView);
         }
 
