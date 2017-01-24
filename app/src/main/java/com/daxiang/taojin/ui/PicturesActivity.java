@@ -14,9 +14,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
@@ -27,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.daxiang.android.view.CustomToast;
 import com.daxiang.taojin.R;
 
 import java.util.ArrayList;
@@ -132,11 +131,10 @@ public class PicturesActivity extends AppCompatActivity {
     private void requestReadExternalPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            Log.d(TAG, "READ permission IS NOT granted...");
+            Log.i(TAG, "READ permission IS NOT granted...");
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
-                Log.d(TAG, "11111111111111");
                 showMessageOKCancel("You need to allow READ_EXTERNAL_STORAGE permission",
                         new DialogInterface.OnClickListener() {
                             @Override
@@ -150,10 +148,9 @@ public class PicturesActivity extends AppCompatActivity {
             } else {
                 // 0 是自己定义的请求coude
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 0);
-                Log.d(TAG, "222222222222");
             }
         } else {
-            Log.d(TAG, "READ permission is granted...");
+            Log.i(TAG, "READ permission is granted...");
             mAsyncTask.execute();
         }
     }
@@ -165,7 +162,8 @@ public class PicturesActivity extends AppCompatActivity {
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(PicturesActivity.this, "您已经拒绝了授权", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(PicturesActivity.this, "你已经拒绝了授权", Toast.LENGTH_SHORT).show();
+                        CustomToast.makeText(PicturesActivity.this, "你已经拒绝了授权", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .create()
@@ -174,7 +172,7 @@ public class PicturesActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        Log.d(TAG, "requestCode=" + requestCode + "; --->" + permissions.toString()
+        Log.i(TAG, "requestCode=" + requestCode + "; --->" + permissions.toString()
                 + "; grantResult=" + grantResults.toString());
         switch (requestCode) {
             case 0:
@@ -189,7 +187,8 @@ public class PicturesActivity extends AppCompatActivity {
 
                     // permission denied
                     // request failed
-                    Toast.makeText(PicturesActivity.this, "您已经拒绝了授权", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(PicturesActivity.this, "你已经拒绝了授权", Toast.LENGTH_SHORT).show();
+                    CustomToast.makeText(PicturesActivity.this, "你已经拒绝了授权", Toast.LENGTH_SHORT).show();
                 }
 
                 break;
