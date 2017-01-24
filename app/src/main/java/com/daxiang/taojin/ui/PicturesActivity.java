@@ -47,7 +47,6 @@ public class PicturesActivity extends AppCompatActivity {
     private ArrayList<Integer> mHeights;
     private ArrayList<Integer> mWidths;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -119,14 +118,6 @@ public class PicturesActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
-            /*for (Uri uri : uriArray) {
-                Log.i("图片Uri", uri.getPath());
-            }
-
-            for (Long id : origIdArray) {
-                Log.i("图片id", id + "");
-            }*/
-
 
             RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
             mRecyclerView.setLayoutManager(layoutManager);
@@ -242,7 +233,7 @@ public class PicturesActivity extends AppCompatActivity {
         public void onBindViewHolder(MyViewHolder holder, int position) {
 //            MediaStore.Images.Thumbnails.getThumbnail(mContext.getContentResolver(),mDatas.get(position),
 //                    MediaStore.Images.Thumbnails.MICRO_KIND,options);
-            // 随机高度, 模拟瀑布效果.
+            /*// 随机高度, 模拟瀑布效果.
             if (mHeights.size() <= position) {
                 mHeights.add((int) (200 + Math.random() * 300));
             }
@@ -253,9 +244,9 @@ public class PicturesActivity extends AppCompatActivity {
             ViewGroup.LayoutParams lp = holder.imageView.getLayoutParams();
             lp.height = mHeights.get(position);
             lp.width = mWidths.get(position);
-            holder.imageView.setLayoutParams(lp);
+            holder.imageView.setLayoutParams(lp);*/
 
-            Glide.with(mContext).load(mDatas.get(position)).into(holder.imageView);
+            Glide.with(mContext).loadFromMediaStore(mDatas.get(position)).into(holder.imageView);
         }
 
         @Override
