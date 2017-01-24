@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <Button
+            android:id="@+id/httpClientGet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="HttpClient Get"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/httpClientPost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="HttpClient Post"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okGet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp Get"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okHttps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp Https POST"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okHttpPostString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp POST String"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okPostStream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp POST Stream"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okPostFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp POST File"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okPostForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp POST Form"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okPostMultipart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp POST Multipart"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/okGetParseGson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp GET ParseGson"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/testCache"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp Test Cache"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/testTimeout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp Test Timeout"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/testSingleCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp单个Call的配置"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
+</ScrollView>

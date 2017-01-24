@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.PopupMenuCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
@@ -15,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.titleBar)
     public RelativeLayout titleBar;
 
-    private static final String[] StartMenuStr = new String[]{"我的相册", "收藏夹", "我的钱包", "我的足迹"};
+    private static final String[] StartMenuStr = new String[]{"我的相册", "收藏夹", "OKHttp", "我的足迹"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +112,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @OnItemClick(R.id.start_drawer_list)
     public void onStartDrawerListItemClick(int position) {
         mDrawerLayout.closeDrawer(GravityCompat.START);
-        switch(position){
+        switch (position) {
             case 0:
-                startActivity(new Intent(this,PicturesActivity.class));
+                startActivity(new Intent(this, PicturesActivity.class));
                 break;
-            case 1:
+            case 2:
+                startActivity(new Intent(this, HttpTestActivity.class));
                 break;
         }
     }

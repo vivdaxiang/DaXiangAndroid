@@ -28,3 +28,8 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.4.0'
     compile project(':DaXiangLibrary')
 }
+
+//解决AS中无法使用HttpClient的问题；
+android {
+    useLibrary 'org.apache.http.legacy'
+}
