@@ -5,8 +5,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,19 +17,33 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.daxiang.android.http.okhttp.OkHttpRequest;
+import com.daxiang.android.http.okhttp.OkHttpResponse;
+import com.daxiang.android.ui.BaseOkHttpActivity;
+import com.daxiang.android.utils.Logger;
+import com.daxiang.android.view.CustomToast;
 import com.daxiang.taojin.R;
+import com.daxiang.taojin.adapter.ImgListAdapter;
+import com.daxiang.taojin.bean.ImgInfo;
+import com.daxiang.taojin.bean.ImgInfoList;
+import com.daxiang.taojin.constants.ImgApiConstants;
+import com.google.gson.Gson;
+
+import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
+import okhttp3.Call;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends BaseOkHttpActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private FrameLayout mEndDrawer;
@@ -40,8 +55,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private PopupMenu mPopupMenu;
     @BindView(R.id.titleBar)
     public RelativeLayout titleBar;
+    @BindView(R.id.recyclerView)
+    public RecyclerView mRecyclerView;
 
+    public static final String TAG = MainActivity.class.getSimpleName();
     private static final String[] StartMenuStr = new String[]{"我的相册", "收藏夹", "OKHttp", "我的足迹"};
+    private static final int REQUEST_IMG_LIST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,26 +72,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             // 设置状态栏透明
-
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 设置内容布局属性
+
             DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
             ViewGroup contentLayout = (ViewGroup) drawerLayout.getChildAt(0);
-
             contentLayout.setFitsSystemWindows(true);
-
             contentLayout.setClipToPadding(true);
 
-            // 设置抽屉布局属性
-
             ViewGroup vg = (ViewGroup) drawerLayout.getChildAt(1);
-
-            vg.setFitsSystemWindows(false);
-
-            // 设置 DrawerLayout 属性
+            vg.setFitsSystemWindows(true);
 
             drawerLayout.setFitsSystemWindows(false);
-
         }
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -85,6 +95,43 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow_end, GravityCompat.END);
 //        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
 
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        initData();
+    }
+
+    private void initData() {
+        OkHttpRequest request = new OkHttpRequest.Builder().url(ImgApiConstants.API_IMG_LIST).requestCode(REQUEST_IMG_LIST).build();
+        sendRequest(request);
+    }
+
+
+    @Override
+    protected void onRequestSuccess(Call call, OkHttpResponse response, int requestCode) {
+        if (requestCode == REQUEST_IMG_LIST) {
+            ImgInfoList list = new Gson().fromJson(response.getResponseStr(), ImgInfoList.class);
+            if (list != null && list.tngou.size() > 0) {
+                for (ImgInfo info : list.tngou) {
+                    Logger.i(TAG, info.img);
+                }
+                ImgListAdapter adapter = new ImgListAdapter(this, list.tngou);
+                mRecyclerView.setAdapter(adapter);
+            }
+        }
+    }
+
+    @Override
+    protected void onRequestFailed(Call call, IOException e, int requestCode) {
+        CustomToast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+    }
+
+    public static class ImgListViewHolder extends RecyclerView.ViewHolder {
+        public final ImageView imageView;
+
+        public ImgListViewHolder(View itemView) {
+            super(itemView);
+            imageView = (ImageView) itemView.findViewById(R.id.image);
+        }
     }
 
     @Override
