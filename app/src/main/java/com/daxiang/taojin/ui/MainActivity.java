@@ -21,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.daxiang.android.http.okhttp.OkHttpRequest;
@@ -127,10 +128,12 @@ public class MainActivity extends BaseOkHttpActivity implements View.OnClickList
 
     public static class ImgListViewHolder extends RecyclerView.ViewHolder {
         public final ImageView imageView;
+        public final TextView imgDesc;
 
         public ImgListViewHolder(View itemView) {
             super(itemView);
             imageView = (ImageView) itemView.findViewById(R.id.image);
+            imgDesc = (TextView) itemView.findViewById(R.id.img_desc);
         }
     }
 

@@ -1,13 +1,9 @@
 package com.daxiang.taojin.adapter;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.daxiang.taojin.R;
@@ -43,6 +39,7 @@ public class ImgListAdapter extends RecyclerView.Adapter<MainActivity.ImgListVie
     @Override
     public void onBindViewHolder(MainActivity.ImgListViewHolder holder, int position) {
         Glide.with(mContext).load(ImgApiConstants.IMG_URI_PREFIX + mDatas.get(position).img).into(holder.imageView);
+        holder.imgDesc.setText(mDatas.get(position).title);
     }
 
 }
