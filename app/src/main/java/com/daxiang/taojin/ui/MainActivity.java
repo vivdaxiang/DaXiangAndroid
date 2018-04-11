@@ -35,6 +35,7 @@ import com.daxiang.taojin.bean.ImgInfo;
 import com.daxiang.taojin.bean.ImgInfoList;
 import com.daxiang.taojin.constants.ImgApiConstants;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 
@@ -110,7 +111,12 @@ public class MainActivity extends BaseOkHttpActivity implements View.OnClickList
     @Override
     protected void onRequestSuccess(Call call, OkHttpResponse response, int requestCode) {
         if (requestCode == REQUEST_IMG_LIST) {
-            ImgInfoList list = new Gson().fromJson(response.getResponseStr(), ImgInfoList.class);
+            ImgInfoList list = null;
+            try {
+                list = new Gson().fromJson(response.getResponseStr(), ImgInfoList.class);
+            } catch (JsonSyntaxException e) {
+                e.printStackTrace();
+            }
             if (list != null && list.tngou.size() > 0) {
                 for (ImgInfo info : list.tngou) {
                     Logger.i(TAG, info.img);
