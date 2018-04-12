@@ -24,20 +24,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.daxiang.android.http.JsonParser;
 import com.daxiang.android.http.okhttp.OkHttpRequest;
 import com.daxiang.android.http.okhttp.OkHttpResponse;
 import com.daxiang.android.ui.BaseOkHttpActivity;
-import com.daxiang.android.utils.Logger;
 import com.daxiang.android.view.CustomToast;
 import com.daxiang.taojin.R;
 import com.daxiang.taojin.adapter.ImgListAdapter;
 import com.daxiang.taojin.bean.ImgInfo;
-import com.daxiang.taojin.bean.ImgInfoList;
 import com.daxiang.taojin.constants.ImgApiConstants;
-import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -111,17 +110,19 @@ public class MainActivity extends BaseOkHttpActivity implements View.OnClickList
     @Override
     protected void onRequestSuccess(Call call, OkHttpResponse response, int requestCode) {
         if (requestCode == REQUEST_IMG_LIST) {
-            ImgInfoList list = null;
+//            ImgInfoList list = null;
+            List<ImgInfo> list = null;
             try {
-                list = new Gson().fromJson(response.getResponseStr(), ImgInfoList.class);
+                list = JsonParser.parseJsonArray(response.getResponseStr(), ImgInfo.class);
+//                list = new Gson().fromJson(response.getResponseStr(), ImgInfoList.class);
             } catch (JsonSyntaxException e) {
                 e.printStackTrace();
             }
-            if (list != null && list.tngou.size() > 0) {
-                for (ImgInfo info : list.tngou) {
+            if (list != null && list.size() > 0) {
+                /*for (ImgInfo info : list.tngou) {
                     Logger.i(TAG, info.img);
-                }
-                ImgListAdapter adapter = new ImgListAdapter(this, list.tngou);
+                }*/
+                ImgListAdapter adapter = new ImgListAdapter(this, list);
                 mRecyclerView.setAdapter(adapter);
             }
         }

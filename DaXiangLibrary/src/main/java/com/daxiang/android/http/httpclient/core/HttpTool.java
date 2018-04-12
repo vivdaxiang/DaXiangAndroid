@@ -59,7 +59,7 @@ import com.daxiang.android.http.httpclient.request.HttpFilePostRequest;
 import com.daxiang.android.http.httpclient.request.HttpPostRequest;
 import com.daxiang.android.http.httpclient.request.HttpRequest;
 import com.daxiang.android.utils.FileUtils;
-import com.daxiang.android.utils.Logger;
+import com.daxiang.android.utils.LogUtils;
 import com.google.gson.Gson;
 
 import android.content.Context;
@@ -191,7 +191,7 @@ public class HttpTool {
 				return content;
 			}
 		} catch (Exception e) {
-			Logger.e(TAG, e.toString());
+			LogUtils.e(TAG, e.toString());
 		} finally {
 		}
 		return "";
@@ -227,7 +227,7 @@ public class HttpTool {
 				return content;
 			}
 		} catch (Exception e) {
-			Logger.e(TAG, e.toString());
+			LogUtils.e(TAG, e.toString());
 		} finally {
 		}
 		return "";
@@ -283,7 +283,7 @@ public class HttpTool {
 				return content;
 			}
 		} catch (Exception e) {
-			Logger.e(TAG, e.toString());
+			LogUtils.e(TAG, e.toString());
 		} finally {
 		}
 
@@ -356,7 +356,7 @@ public class HttpTool {
 				return content;
 			}
 		} catch (Exception e) {
-			Logger.e(TAG, e.toString());
+			LogUtils.e(TAG, e.toString());
 		} finally {
 		}
 		return "";
@@ -389,7 +389,7 @@ public class HttpTool {
 				return content;
 			}
 		} catch (Exception e) {
-			Logger.e(TAG, e.toString());
+			LogUtils.e(TAG, e.toString());
 			return "HttpTool Exception:" + e.toString();
 		} finally {
 		}
@@ -430,7 +430,7 @@ public class HttpTool {
 			return content;
 			// }
 		} catch (Exception e) {
-			Logger.e(TAG, e.toString());
+			LogUtils.e(TAG, e.toString());
 		} finally {
 		}
 

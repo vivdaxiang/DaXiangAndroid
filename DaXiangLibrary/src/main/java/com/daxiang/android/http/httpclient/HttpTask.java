@@ -6,7 +6,7 @@ import android.text.TextUtils;
 
 import com.daxiang.android.http.HttpConstants;
 import com.daxiang.android.http.httpclient.request.HttpRequest;
-import com.daxiang.android.utils.Logger;
+import com.daxiang.android.utils.LogUtils;
 import com.daxiang.android.utils.NetworkUtils;
 
 /**
@@ -36,7 +36,7 @@ public class HttpTask implements Runnable {
 		String json = null;
 		try {
 			if (isCancel) {
-				Logger.i(TAG, "cancel this task before run!");
+				LogUtils.i(TAG, "cancel this task before run!");
 				return;
 			}
 			switch (httpRequest.dataAccessMode) {
@@ -101,10 +101,10 @@ public class HttpTask implements Runnable {
 
 	private void handlerMessage(Message msg) {
 		if (isCancel) {
-			Logger.i(TAG, "cancel this task after run!");
+			LogUtils.i(TAG, "cancel this task after run!");
 			return;
 		}
-		Logger.i(TAG, "handlerMessage callback");
+		LogUtils.i(TAG, "handlerMessage callback");
 		handler.sendMessage(msg);
 	}
 

@@ -11,7 +11,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import com.daxiang.android.utils.Logger;
+import com.daxiang.android.utils.LogUtils;
 
 /**
  * 自己实现的X509信任管理器
@@ -59,7 +59,7 @@ public class X509TrustManagerImpl implements X509TrustManager {
 		// "SunJSSE");//纯Java环境的写法，不适合Android环境；
 		// TrustManagerFactory tmf = TrustManagerFactory.getInstance("PKIX",
 		// "BC");// algorithm：PKIX；provider：BC；//此写法始终爆异常：该provider不支持“XX”算法；
-		Logger.i("X509TrustManagerImpl", "默认算法:" + TrustManagerFactory.getDefaultAlgorithm());// PKIX;
+		LogUtils.i("X509TrustManagerImpl", "默认算法:" + TrustManagerFactory.getDefaultAlgorithm());// PKIX;
 		TrustManagerFactory tmf = TrustManagerFactory
 				.getInstance(TrustManagerFactory.getDefaultAlgorithm());
 		tmf.init(keyStore);

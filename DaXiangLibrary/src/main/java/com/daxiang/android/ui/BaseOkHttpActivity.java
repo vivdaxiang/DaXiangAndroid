@@ -13,7 +13,7 @@ import com.daxiang.android.http.HttpConstants;
 import com.daxiang.android.http.okhttp.OkHttpManager;
 import com.daxiang.android.http.okhttp.OkHttpRequest;
 import com.daxiang.android.http.okhttp.OkHttpResponse;
-import com.daxiang.android.utils.Logger;
+import com.daxiang.android.utils.LogUtils;
 
 /**
  * 
@@ -29,7 +29,7 @@ public abstract class BaseOkHttpActivity extends BaseActivity {
 	protected void sendRequest(OkHttpRequest request) {
 		// request.okHttpCallback = this;
 		request.responseHandler = this.$responseHandler;
-		Logger.i(TAG, "发起请求==" + request.url());
+		LogUtils.i(TAG, "发起请求==" + request.url());
 		Call call = OkHttpManager.sendRequest(request);
 		callList.add(call);
 	}
@@ -44,7 +44,7 @@ public abstract class BaseOkHttpActivity extends BaseActivity {
 			case HttpConstants.NetDataProtocol.LOAD_SUCCESS:
 				// Logger.i(TAG,
 				// result.getCall().request().url().url().getPath());
-				Logger.i(TAG, "返回响应==" + result.getResponseStr());
+				LogUtils.i(TAG, "返回响应==" + result.getResponseStr());
 				onRequestSuccess(result.getCall(), result, msg.arg1);
 				break;
 

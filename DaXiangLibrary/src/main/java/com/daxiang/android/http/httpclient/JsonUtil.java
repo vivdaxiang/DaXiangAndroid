@@ -3,7 +3,7 @@ package com.daxiang.android.http.httpclient;
 import com.daxiang.android.http.httpclient.core.HttpTool;
 import com.daxiang.android.http.httpclient.request.HttpRequest;
 import com.daxiang.android.http.httpclient.utils.ACache;
-import com.daxiang.android.utils.Logger;
+import com.daxiang.android.utils.LogUtils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -39,12 +39,12 @@ public class JsonUtil {
 	 * @param context
 	 */
 	private static void cacheJsonToSharedPref(String url, String json, Context context) {
-		Logger.i(TAG, "cacheJsonToSharedPref---" + url);
+		LogUtils.i(TAG, "cacheJsonToSharedPref---" + url);
 		SharedPreferences sp = context.getSharedPreferences(CACHE_JSON_SP, Context.MODE_PRIVATE);
 		Editor editor = sp.edit();
 		editor.putString(url, json);
 		editor.commit();
-		Logger.i(TAG, "---cache Json to SharedPref end---");
+		LogUtils.i(TAG, "---cache Json to SharedPref end---");
 	}
 
 	// -------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ public class JsonUtil {
 
 		String json = HttpTool.sendRequest(httpRequest);
 
-		Logger.i(TAG, "getJsonFromServer---" + json);
+		LogUtils.i(TAG, "getJsonFromServer---" + json);
 
 		if (!TextUtils.isEmpty(json)) {
 			if (httpRequest.isCache()) {

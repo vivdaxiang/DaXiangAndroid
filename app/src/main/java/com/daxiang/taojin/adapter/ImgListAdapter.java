@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.daxiang.taojin.R;
 import com.daxiang.taojin.bean.ImgInfo;
-import com.daxiang.taojin.constants.ImgApiConstants;
 import com.daxiang.taojin.ui.MainActivity;
 
 import java.util.List;
@@ -38,7 +37,8 @@ public class ImgListAdapter extends RecyclerView.Adapter<MainActivity.ImgListVie
 
     @Override
     public void onBindViewHolder(MainActivity.ImgListViewHolder holder, int position) {
-        Glide.with(mContext).load(ImgApiConstants.IMG_URI_PREFIX + mDatas.get(position).img).into(holder.imageView);
+//        Glide.with(mContext).load(ImgApiConstants.IMG_URI_PREFIX + mDatas.get(position).img).into(holder.imageView);
+        Glide.with(mContext).load(mDatas.get(position).sourceurl).into(holder.imageView);
         holder.imgDesc.setText(mDatas.get(position).title);
     }
 

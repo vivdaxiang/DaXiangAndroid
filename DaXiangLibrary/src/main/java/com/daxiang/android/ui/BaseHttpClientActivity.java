@@ -6,7 +6,7 @@ import com.daxiang.android.http.HttpConstants;
 import com.daxiang.android.http.executor.TaskExecutor;
 import com.daxiang.android.http.httpclient.HttpTask;
 import com.daxiang.android.http.httpclient.request.HttpRequest;
-import com.daxiang.android.utils.Logger;
+import com.daxiang.android.utils.LogUtils;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -29,20 +29,20 @@ public abstract class BaseHttpClientActivity extends BaseActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onCreate() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onCreate() invoked!!");
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	}
 
 	@Override
 	protected void onStart() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onStart() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onStart() invoked!!");
 		super.onStart();
 	}
 
 	@Override
 	public void onDestroy() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onDestroy() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onDestroy() invoked!!");
 
 		if (mProgressDialog != null) {
 			mProgressDialog.dismiss();
@@ -67,11 +67,11 @@ public abstract class BaseHttpClientActivity extends BaseActivity {
 		HttpTask jsonTask = new HttpTask(httpRequest);
 
 		if (mTaskQueue.containsKey(httpRequest.requestCode)) {
-			Logger.i(BASETAG, "remove repeated task, id: " + httpRequest.requestCode);
+			LogUtils.i(BASETAG, "remove repeated task, id: " + httpRequest.requestCode);
 			mTaskQueue.get(httpRequest.requestCode).cancel();
 		}
 
-		Logger.i(BASETAG, "add task to queue, id: " + httpRequest.requestCode);
+		LogUtils.i(BASETAG, "add task to queue, id: " + httpRequest.requestCode);
 		mTaskQueue.put(httpRequest.requestCode, jsonTask);
 		TaskExecutor.getInstance().submit(jsonTask);
 	}
@@ -86,7 +86,7 @@ public abstract class BaseHttpClientActivity extends BaseActivity {
 				try {
 					onRequestSuccess(msg.arg1, (String) msg.obj);
 				} catch (Exception e) {
-					Logger.e(BASETAG, "handleMessage LOAD_SUCCESS --> error-->  " + e.toString());
+					LogUtils.e(BASETAG, "handleMessage LOAD_SUCCESS --> error-->  " + e.toString());
 				}
 				break;
 
@@ -94,7 +94,7 @@ public abstract class BaseHttpClientActivity extends BaseActivity {
 				try {
 					onRequestFailed(msg.arg1, (String) msg.obj);
 				} catch (Exception e) {
-					Logger.e(BASETAG, "handleMessage LOAD_FAILED --> error-->  " + e.toString());
+					LogUtils.e(BASETAG, "handleMessage LOAD_FAILED --> error-->  " + e.toString());
 				}
 				break;
 			}
@@ -147,25 +147,25 @@ public abstract class BaseHttpClientActivity extends BaseActivity {
 
 	@Override
 	protected void onRestart() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onRestart() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onRestart() invoked!!");
 		super.onRestart();
 	}
 
 	@Override
 	protected void onResume() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onResume() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onResume() invoked!!");
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onPause() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onPause() invoked!!");
 		super.onPause();
 	}
 
 	@Override
 	protected void onStop() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onStop() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onStop() invoked!!");
 		super.onStop();
 	}
 }

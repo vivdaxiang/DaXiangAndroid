@@ -6,4 +6,7 @@ package com.daxiang.taojin.bean;
 public class ImgInfo {
     public String img;
     public String title;
+    public String thumburl;
+    public String sourceurl;
+
 }

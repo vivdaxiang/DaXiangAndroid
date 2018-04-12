@@ -1,6 +1,6 @@
 package com.daxiang.android.ui;
 
-import com.daxiang.android.utils.Logger;
+import com.daxiang.android.utils.LogUtils;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -18,20 +18,20 @@ public class BaseActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onCreate() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onCreate() invoked!!");
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	}
 
 	@Override
 	protected void onStart() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onStart() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onStart() invoked!!");
 		super.onStart();
 	}
 
 	@Override
 	public void onDestroy() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onDestroy() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onDestroy() invoked!!");
 		super.onDestroy();
 	}
 
@@ -41,25 +41,25 @@ public class BaseActivity extends Activity {
 
 	@Override
 	protected void onRestart() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onRestart() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onRestart() invoked!!");
 		super.onRestart();
 	}
 
 	@Override
 	protected void onResume() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onResume() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onResume() invoked!!");
 		super.onResume();
 	}
 
 	@Override
 	protected void onPause() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onPause() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onPause() invoked!!");
 		super.onPause();
 	}
 
 	@Override
 	protected void onStop() {
-		Logger.d(BASETAG, this.getClass().getSimpleName() + " onStop() invoked!!");
+		LogUtils.d(BASETAG, this.getClass().getSimpleName() + " onStop() invoked!!");
 		super.onStop();
 	}
 

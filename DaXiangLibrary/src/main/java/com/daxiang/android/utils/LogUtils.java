@@ -9,7 +9,7 @@ import android.util.Log;
  * 
  *         2015-5-4
  */
-public class Logger {
+public class LogUtils {
 	public static int VERBOSE = 5;
 	public static int DEBUG = 4;
 	public static int INFO = 3;
