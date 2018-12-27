@@ -1,5 +1,7 @@
 <resources>
 
     <string name="app_name">DaXiangLibrary</string>
-
+    <string name="text_install">Install</string>
+    <string name="auto_install_service_label">XXXXXXXX</string>
+    <string name="text_done">Done</string>
 </resources>
