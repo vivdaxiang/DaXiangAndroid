@@ -132,6 +132,13 @@ public class HttpTestActivity extends AppCompatActivity implements View.OnClickL
                 intent.putExtra("method", OkHttpRequestActivity.Test_Single_Call);
                 startActivity(intent);
                 break;
+
+            case R.id.downloadFile:
+                intent = new Intent(this, OkHttpRequestActivity.class);
+                intent.putExtra("url", "http://publicobject.com/helloworld.txt");
+                intent.putExtra("method", OkHttpRequestActivity.DOWNLOAD_FILE);
+                startActivity(intent);
+                break;
         }
     }
 }

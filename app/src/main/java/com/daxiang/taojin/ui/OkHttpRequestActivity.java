@@ -59,6 +59,7 @@ public class OkHttpRequestActivity extends BaseOkHttpActivity {
     public static final String Test_Cache = "test_cache";
     public static final String Test_Timeout = "test_timeout";
     public static final String Test_Single_Call = "test_single_call";
+    public static final String DOWNLOAD_FILE = "download_file";
 
     private static MediaType MEDIA_TYPE_MARKDOWN = MediaType
             .parse("text/x-markdown; charset=utf-8");
@@ -122,6 +123,8 @@ public class OkHttpRequestActivity extends BaseOkHttpActivity {
             request = testTimeout(url);
         } else if (requestMethod.equals(Test_Single_Call)) {
             request = testSingleCall(url);
+        }else if(DOWNLOAD_FILE.equals(requestMethod)){
+            //文件下载
         }
         sendRequest(request);
     }

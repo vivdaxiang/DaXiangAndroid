@@ -125,6 +125,15 @@
             android:padding="10dp"
             android:text="OkHttp单个Call的配置"
             android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/downloadFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:padding="10dp"
+            android:text="OkHttp文件下载"
+            android:textAllCaps="false" />
     </LinearLayout>
 
 </ScrollView>
